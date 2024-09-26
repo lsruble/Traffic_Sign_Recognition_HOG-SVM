@@ -17,14 +17,14 @@ Block size: 2x2 cells
 Orientation bins: 8
 This results in feature vectors of length 1568 for 40x40 pixel resized images.
 
-# Classification
+## Classification
 Two classifiers were tested for traffic sign classification:
 
 **Support Vector Classifier (SVC)**: Achieved 95% accuracy.
 **Random Forest**: Achieved 91% accuracy.
 While some tests were performed using normalized HSV color histograms, the best results were obtained by relying solely on shape-based features (HOG).
 
-#Detection
+## Detection
 For traffic sign detection, a multi-step process was implemented:
 
 **Pyramid Sliding Window**: Initial trials using this approach led to many false positives and high computational costs.
@@ -34,7 +34,10 @@ Additional processing steps include:
 
 **Binary Processing**: Converted images to binary using adaptive thresholding (Otsu) and contour detection to further refine the regions of interest (ROIs).
 Non-Maximum Suppression (NMS): Applied after classifying ROIs with HOG/SVM to reduce overlapping bounding boxes.
-Results
+
+![Architecture Diagram](figures/schema.png)
+
+## Results
 Precision: 94.49% with a confidence threshold of 0.95.
 Recall: 33.55% at the same confidence threshold.
 By lowering the threshold to 0.85, recall increased to 44.86% at the cost of reduced precision (81.73%). This provides a flexible trade-off between accuracy and recall depending on application requirements.
